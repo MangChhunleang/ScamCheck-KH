@@ -1,0 +1,50 @@
+# DigitalOcean App Platform spec for ScamCheck KH
+# Import via: DigitalOcean → Apps → Create App → "Import from app spec",
+# or with the CLI: doctl apps create --spec .do/app.yaml
+#
+# IMPORTANT:
+# - Fill in VITE_CONVEX_URL with your PRODUCTION Convex URL (from `npx convex deploy`).
+# - Set GEMINI_API_KEY in the DO dashboard as an ENCRYPTED secret (do NOT commit the real key here).
+# - Do NOT put ADMIN_PASSCODE here — it lives only on Convex (`npx convex env set ADMIN_PASSCODE`).
+
+name: scamcheck-kh
+region: sgp   # Singapore — closest region to Cambodia
+
+services:
+  - name: web
+    github:
+      repo: MangChhunleang/ScamCheck-KH
+      branch: main
+      deploy_on_push: true
+
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs   # smallest/cheapest; fine for private alpha
+
+    build_command: npm run build
+    run_command: npm run start
+    http_port: 3000
+
+    routes:
+      - path: /
+
+    health_check:
+      http_path: /
+
+    envs:
+      - key: NODE_ENV
+        scope: RUN_AND_BUILD_TIME
+        value: production
+
+      # Vite inlines VITE_ vars at BUILD time — must be available during build.
+      # Replace with your PRODUCTION Convex URL.
+      - key: VITE_CONVEX_URL
+        scope: BUILD_TIME
+        value: https://YOUR-PROD-PROJECT.convex.cloud
+
+      # Optional: enables AI-worded explanations. Set the real value as an
+      # ENCRYPTED secret in the DO dashboard, not in this committed file.
+      - key: GEMINI_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+        value: ""
