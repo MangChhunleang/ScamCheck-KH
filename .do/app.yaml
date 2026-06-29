@@ -40,7 +40,7 @@ services:
       # Replace with your PRODUCTION Convex URL.
       - key: VITE_CONVEX_URL
         scope: BUILD_TIME
-        value: https://YOUR-PROD-PROJECT.convex.cloud
+        value: https://confident-jellyfish-292.convex.cloud
 
       # Optional: enables AI-worded explanations. Set the real value as an
       # ENCRYPTED secret in the DO dashboard, not in this committed file.
