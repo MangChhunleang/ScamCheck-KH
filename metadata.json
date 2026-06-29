@@ -1,0 +1,6 @@
+{
+  "name": "ScamCheck KH",
+  "description": "A digital safety and scam detection tool for Cambodian users to verify suspicious messages, links, job offers, and payment requests.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

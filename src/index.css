@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans Khmer", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-khmer: "Noto Sans Khmer", sans-serif;
+  
+  --color-brand-blue: #0F172A;
+  --color-brand-light-blue: #1E293B;
+  --color-kh-gold: #FDF8F1;
+  --color-kh-beige: #FDF8F1;
+  --color-danger-red: #DC2626;
+  --color-warning-orange: #D97706;
+  --color-success-green: #15803D;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F3F4F6;
+  color: #0F172A;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Smoother font rendering, especially for Khmer */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.55;
+}
+
+/* Prevent unwanted horizontal scrolling on mobile across the whole app */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth in-page scrolling */
+html {
+  scroll-behavior: smooth;
+  /* Avoid iOS tap-highlight flashing on buttons */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Long words / URLs should wrap instead of forcing horizontal scroll */
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+li,
+a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Safe-area aware bottom padding utility (used by the mobile bottom nav) */
+@utility pb-safe {
+  padding-bottom: calc(0.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Reserve space for the fixed bottom nav including the device safe area */
+@utility pb-nav-safe {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Hide scrollbar while keeping horizontal scroll (used by admin sub-nav) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Custom smooth transitions */
+.transition-all-custom {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 25, 49, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 25, 49, 0.4);
+}
+
+/* Hide the webkit scrollbar for .no-scrollbar elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
