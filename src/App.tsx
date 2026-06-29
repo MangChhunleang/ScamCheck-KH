@@ -290,7 +290,7 @@ export default function App() {
 
         {/* Right side: language toggle + about icon */}
         <div className="flex items-center space-x-2">
-          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <LanguageToggle language={language} setLanguage={setLanguage} isDarkBg />
           <button
             onClick={() => setActiveTab('about')}
             title="About"
